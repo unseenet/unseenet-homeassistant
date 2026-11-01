@@ -1,0 +1,186 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Unseenet node or council replica",
+        "description": "Connect to the stats interface of an Unseenet node or council replica - for the Unseenet add-ons, the add-on's hostname and port 1120. Home Assistant only reads its status; it changes nothing on the node.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "token": "Token"
+        },
+        "data_description": {
+          "host": "The add-on's hostname, shown on its Info tab",
+          "port": "The stats port (1120 for the add-ons)",
+          "token": "The token the add-on shows in its log"
+        }
+      },
+      "hassio_confirm": {
+        "title": "Unseenet found",
+        "description": "Show the status of {name} from the {addon} add-on in Home Assistant?"
+      },
+      "reauth_confirm": {
+        "title": "New token for {name}",
+        "description": "The token was refused - the add-on may have made a new one. Its log shows the current token.",
+        "data": {
+          "token": "Token"
+        }
+      },
+      "reconfigure": {
+        "title": "Change the connection",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach the stats interface. Is the add-on running, and are its stats turned on?",
+      "invalid_auth": "The token was refused.",
+      "unsupported_version": "This node speaks a newer stats version - update the integration.",
+      "unknown": "The answer was not a node's or a replica's stats."
+    },
+    "abort": {
+      "already_configured": "This node or replica is already set up.",
+      "reauth_successful": "The new token works.",
+      "reconfigure_successful": "The connection was changed.",
+      "wrong_node": "That is a different node or replica.",
+      "cannot_connect": "Cannot reach the stats interface.",
+      "invalid_auth": "The token was refused.",
+      "unsupported_version": "This node speaks a newer stats version.",
+      "unknown": "The answer was not a node's or a replica's stats."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "tor_running": {
+        "name": "Tor"
+      },
+      "problem": {
+        "name": "Needs attention"
+      },
+      "peer": {
+        "name": "Peer {peer}"
+      },
+      "twin": {
+        "name": "Twin alarm"
+      },
+      "disputed": {
+        "name": "Council disputed"
+      },
+      "waiting_for_you": {
+        "name": "Waiting for you"
+      }
+    },
+    "sensor": {
+      "tor": {
+        "name": "Tor state",
+        "state": {
+          "running": "Running",
+          "off": "Off",
+          "down": "Down"
+        }
+      },
+      "tor_bootstrap": {
+        "name": "Tor bootstrap"
+      },
+      "accepted_hour": {
+        "name": "Posts taken in, last hour"
+      },
+      "sent_hour": {
+        "name": "Posts sent to peers, last hour"
+      },
+      "served_hour": {
+        "name": "Posts served, last hour"
+      },
+      "rejected_hour": {
+        "name": "Posts refused, last hour"
+      },
+      "accepted_total": {
+        "name": "Posts taken in"
+      },
+      "connections": {
+        "name": "Open connections"
+      },
+      "peers_open": {
+        "name": "Peers connected"
+      },
+      "refused": {
+        "name": "Connections turned away"
+      },
+      "groups": {
+        "name": "Groups"
+      },
+      "articles": {
+        "name": "Posts stored"
+      },
+      "stored": {
+        "name": "Posts' size"
+      },
+      "disk_free": {
+        "name": "Disk free"
+      },
+      "contact_new": {
+        "name": "New in contact inbox"
+      },
+      "warnings": {
+        "name": "Warnings"
+      },
+      "started": {
+        "name": "Started"
+      },
+      "role": {
+        "name": "Role",
+        "state": {
+          "waiting": "Waiting for the council",
+          "shadow": "Shadow",
+          "member_on_probation": "Member on probation",
+          "full_member": "Full member"
+        }
+      },
+      "level": {
+        "name": "Ripening level"
+      },
+      "members": {
+        "name": "Council members"
+      },
+      "full_members": {
+        "name": "Full members"
+      },
+      "held": {
+        "name": "Changes waiting for you"
+      },
+      "reports_60": {
+        "name": "Reports, last 60 days"
+      },
+      "agreeing_60": {
+        "name": "Agreeing days, last 60"
+      },
+      "decisions": {
+        "name": "Decisions"
+      },
+      "full_from": {
+        "name": "Full member from"
+      },
+      "last_round": {
+        "name": "Last round"
+      }
+    }
+  },
+  "issues": {
+    "node_warnings": {
+      "title": "Unseenet node {name} needs a look",
+      "description": "The node reports:\n\n{warnings}\n\n`unseenet-monitor` in the add-on shows more. This goes away by itself when the node is well again."
+    },
+    "replica_twin": {
+      "title": "Replica {name} has stopped: another copy uses its key",
+      "description": "Something else posts with this replica's key - most likely a copy of it running on another machine, such as a restored backup. Two replicas with one key can split the council, so this one signs nothing until you act.\n\nThe post it did not send: {subject}\n\nStop the other copy. When it is gone, run `unseenet-replica twin-gone {message_id}` in the add-on."
+    },
+    "replica_held": {
+      "title": "Replica {name} waits for you",
+      "description": "These council changes wait until you agree:\n\n{changes}\n\nRun `unseenet-replica status` in the add-on for what they are, and `unseenet-replica agree LABEL` to let one go ahead."
+    }
+  }
+}
