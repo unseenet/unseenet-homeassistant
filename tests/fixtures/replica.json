@@ -1,0 +1,21 @@
+{
+ "v": 1,
+ "kind": "replica",
+ "status": {
+  "time": "2026-11-01T20:00:00Z",
+  "software": "unseenet-replica 0.7.0",
+  "group": "unseenet.names@ph5fc5hop5232qsz",
+  "key": "ed25519:s3x2dksmnwzeatsjkyymzopopekyozyhl5yodpituf5jbaefuria",
+  "role": "shadow",
+  "level": 2,
+  "disputed": false,
+  "members": 3,
+  "full": 2,
+  "min_level": 2,
+  "held": {},
+  "decisions": 41,
+  "reports_60": 12,
+  "agreeing_60": 12,
+  "alive_next": null
+ }
+}

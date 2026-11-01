@@ -1,0 +1,186 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Unseenet-node eller rådsreplika",
+        "description": "Forbind til stats-interfacet på en Unseenet-node eller rådsreplika - for Unseenet-add-ons'ene er det add-on'ets hostname og port 1120. Home Assistant læser kun status; den ændrer intet på noden.",
+        "data": {
+          "host": "Vært",
+          "port": "Port",
+          "token": "Token"
+        },
+        "data_description": {
+          "host": "Add-on'ets hostname, som står på dets Info-fane",
+          "port": "Stats-porten (1120 for add-ons'ene)",
+          "token": "Den token, add-on'et viser i sin log"
+        }
+      },
+      "hassio_confirm": {
+        "title": "Unseenet fundet",
+        "description": "Vis status for {name} fra add-on'et {addon} i Home Assistant?"
+      },
+      "reauth_confirm": {
+        "title": "Ny token til {name}",
+        "description": "Token'en blev afvist - add-on'et har måske lavet en ny. Dens log viser den nuværende token.",
+        "data": {
+          "token": "Token"
+        }
+      },
+      "reconfigure": {
+        "title": "Skift forbindelsen",
+        "data": {
+          "host": "Vært",
+          "port": "Port",
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan ikke nå stats-interfacet. Kører add-on'et, og er dets stats slået til?",
+      "invalid_auth": "Token'en blev afvist.",
+      "unsupported_version": "Noden taler en nyere stats-version - opdatér integrationen.",
+      "unknown": "Svaret var ikke stats fra en node eller en replika."
+    },
+    "abort": {
+      "already_configured": "Denne node eller replika er allerede sat op.",
+      "reauth_successful": "Den nye token virker.",
+      "reconfigure_successful": "Forbindelsen er ændret.",
+      "wrong_node": "Det er en anden node eller replika.",
+      "cannot_connect": "Kan ikke nå stats-interfacet.",
+      "invalid_auth": "Token'en blev afvist.",
+      "unsupported_version": "Noden taler en nyere stats-version.",
+      "unknown": "Svaret var ikke stats fra en node eller en replika."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "tor_running": {
+        "name": "Tor"
+      },
+      "problem": {
+        "name": "Kræver opmærksomhed"
+      },
+      "peer": {
+        "name": "Peer {peer}"
+      },
+      "twin": {
+        "name": "Tvilling-alarm"
+      },
+      "disputed": {
+        "name": "Rådet er uenigt"
+      },
+      "waiting_for_you": {
+        "name": "Venter på dig"
+      }
+    },
+    "sensor": {
+      "tor": {
+        "name": "Tor-tilstand",
+        "state": {
+          "running": "Kører",
+          "off": "Slået fra",
+          "down": "Nede"
+        }
+      },
+      "tor_bootstrap": {
+        "name": "Tor-opstart"
+      },
+      "accepted_hour": {
+        "name": "Indlæg modtaget, sidste time"
+      },
+      "sent_hour": {
+        "name": "Indlæg sendt til peers, sidste time"
+      },
+      "served_hour": {
+        "name": "Indlæg leveret, sidste time"
+      },
+      "rejected_hour": {
+        "name": "Indlæg afvist, sidste time"
+      },
+      "accepted_total": {
+        "name": "Indlæg modtaget"
+      },
+      "connections": {
+        "name": "Åbne forbindelser"
+      },
+      "peers_open": {
+        "name": "Forbundne peers"
+      },
+      "refused": {
+        "name": "Afviste forbindelser"
+      },
+      "groups": {
+        "name": "Grupper"
+      },
+      "articles": {
+        "name": "Gemte indlæg"
+      },
+      "stored": {
+        "name": "Indlæggenes størrelse"
+      },
+      "disk_free": {
+        "name": "Ledig disk"
+      },
+      "contact_new": {
+        "name": "Nyt i kontakt-indbakken"
+      },
+      "warnings": {
+        "name": "Advarsler"
+      },
+      "started": {
+        "name": "Startet"
+      },
+      "role": {
+        "name": "Rolle",
+        "state": {
+          "waiting": "Venter på rådet",
+          "shadow": "Skygge",
+          "member_on_probation": "Medlem på prøve",
+          "full_member": "Fuldt medlem"
+        }
+      },
+      "level": {
+        "name": "Modningsniveau"
+      },
+      "members": {
+        "name": "Rådsmedlemmer"
+      },
+      "full_members": {
+        "name": "Fulde medlemmer"
+      },
+      "held": {
+        "name": "Ændringer der venter på dig"
+      },
+      "reports_60": {
+        "name": "Rapporter, sidste 60 dage"
+      },
+      "agreeing_60": {
+        "name": "Enige dage, sidste 60"
+      },
+      "decisions": {
+        "name": "Afgørelser"
+      },
+      "full_from": {
+        "name": "Fuldt medlem fra"
+      },
+      "last_round": {
+        "name": "Seneste runde"
+      }
+    }
+  },
+  "issues": {
+    "node_warnings": {
+      "title": "Unseenet-noden {name} bør ses efter",
+      "description": "Noden melder:\n\n{warnings}\n\n`unseenet-monitor` i add-on'et viser mere. Denne meddelelse forsvinder af sig selv, når noden har det godt igen."
+    },
+    "replica_twin": {
+      "title": "Replikaen {name} er stoppet: en anden kopi bruger dens nøgle",
+      "description": "Noget andet poster med replikaens nøgle - sandsynligvis en kopi af den på en anden maskine, fx en gendannet backup. To replikaer med én nøgle kan splitte rådet, så denne signerer intet, før du handler.\n\nIndlægget, den ikke sendte: {subject}\n\nStop den anden kopi. Når den er væk, kør `unseenet-replica twin-gone {message_id}` i add-on'et."
+    },
+    "replica_held": {
+      "title": "Replikaen {name} venter på dig",
+      "description": "Disse ændringer i rådet venter, til du siger ja:\n\n{changes}\n\nKør `unseenet-replica status` i add-on'et for at se, hvad de er, og `unseenet-replica agree LABEL` for at lade én gå videre."
+    }
+  }
+}
